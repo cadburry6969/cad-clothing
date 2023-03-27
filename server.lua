@@ -1,3 +1,4 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 local playerChains = {}
 
 for item, data in pairs(Config.Items) do
@@ -6,7 +7,7 @@ for item, data in pairs(Config.Items) do
 end
 
 for _, data in pairs(Config.Chains) do
-    exports['qb-inventory']:CreateUseableItem(data.item, function(source, item)
+    exports['qb-inventory']:CreateUsableItem(data.item, function(source, item)
         local playerId = source
         playerChains[playerId] = data
         TriggerClientEvent("chains:useChain", playerId, data)
