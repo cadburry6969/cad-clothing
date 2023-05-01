@@ -1,40 +1,66 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local alreadyUsing = false
+local hasComponentOn = {}
 
-local isWearingChain = false
 RegisterNetEvent('chains:useChain', function(data)
     if not data then return end
+    if alreadyUsing then return end
     local ped = PlayerPedId()
-    if not isWearingChain then
-        isWearingChain = true
-        TriggerEvent('animations:client:EmoteCommandStart', {"adjusttie"})
-        QBCore.Functions.Progressbar("cad_chain", "Putting on chain..", 3000, false, true, {
+    local _component = Config.Component[data.componentId]
+    if not hasComponentOn[data.componentId] then
+        hasComponentOn[data.componentId] = true
+        alreadyUsing = true
+        QBCore.Functions.Progressbar("cad_chain", _component.wearingProgressText, _component.progressTime, false, true, {
             disableMovement = false,
             disableCarMovement = false,
             disableMouse = false,
             disableCombat = true,
-        }, {}, {}, {}, function()
+        }, {
+            animDict = _component.animDict,
+            anim = _component.anim,
+            flags = _component.flags,
+        }, {}, {}, function()
+            alreadyUsing = false
             SetPedComponentVariation(ped, data.componentId, data.drawableId, data.textureId, data.palleteId or 0)
-            TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+            ClearPedTasks(ped)
+        end, function ()
+            alreadyUsing = false
+            ClearPedTasks(ped)
         end)
-    elseif isWearingChain then
-        isWearingChain = false
-        TriggerEvent('animations:client:EmoteCommandStart', {"adjusttie"})
-        QBCore.Functions.Progressbar("cad_chain", "Taking off chain..", 3000, false, true, {
+    elseif hasComponentOn[data.componentId] then
+        hasComponentOn[data.componentId] = false
+        alreadyUsing = true
+        QBCore.Functions.Progressbar("cad_chain", _component.takingoffProgressText, _component.progressTime, false, true, {
             disableMovement = false,
             disableCarMovement = false,
             disableMouse = false,
             disableCombat = true,
-        }, {}, {}, {}, function()
+        }, {
+            animDict = _component.animDict,
+            anim = _component.anim,
+            flags = _component.flags,
+        }, {}, {}, function()
+            alreadyUsing = false
             SetPedComponentVariation(ped, data.componentId, data.default)
-            TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+            ClearPedTasks(ped)
+        end, function ()
+            alreadyUsing = false
+            ClearPedTasks(ped)
         end)
+    end
+end)
+
+RegisterNetEvent('chains:addAllComponents', function(components)
+    if not components then return end
+    local ped = PlayerPedId()
+    for component, data in pairs(components) do
+        hasComponentOn[data.componentId] = true
+        SetPedComponentVariation(ped, data.componentId, data.drawableId, data.textureId, data.palleteId or 0)
     end
 end)
 
 RegisterNetEvent('chains:removeChain', function(data)
     local ped = PlayerPedId()
-    -- TriggerEvent('animations:client:EmoteCommandStart', {"adjusttie"})
-    isWearingChain = false
+    hasComponentOn[data.componentId] = false
     SetPedComponentVariation(ped, data.componentId, data.default)
-    -- TriggerEvent('animations:client:EmoteCommandStart', {"c"})
 end)

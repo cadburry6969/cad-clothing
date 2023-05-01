@@ -20,7 +20,7 @@ local function RemoveItem(source, item, amount, slot)
 		if Player.PlayerData.items[slot].amount > amount then
 			Player.PlayerData.items[slot].amount = Player.PlayerData.items[slot].amount - amount
 			Player.Functions.SetPlayerData("items", Player.PlayerData.items)
-            exports['cad-chains']:onRemoveItem(source)
+            exports['cad-chains']:onRemoveItem(source, item)
 
 			if not Player.Offline then
 				TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'RemoveItem', 'red', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** lost item: [slot:' .. slot .. '], itemname: ' .. Player.PlayerData.items[slot].name .. ', removed amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[slot].amount)
@@ -30,7 +30,7 @@ local function RemoveItem(source, item, amount, slot)
 		elseif Player.PlayerData.items[slot].amount == amount then
 			Player.PlayerData.items[slot] = nil
 			Player.Functions.SetPlayerData("items", Player.PlayerData.items)
-            exports['cad-chains']:onRemoveItem(source)
+            exports['cad-chains']:onRemoveItem(source, item)
 
 			if Player.Offline then return true end
 
@@ -48,7 +48,7 @@ local function RemoveItem(source, item, amount, slot)
 			if Player.PlayerData.items[_slot].amount > amountToRemove then
 				Player.PlayerData.items[_slot].amount = Player.PlayerData.items[_slot].amount - amountToRemove
 				Player.Functions.SetPlayerData("items", Player.PlayerData.items)
-                exports['cad-chains']:onRemoveItem(source)
+                exports['cad-chains']:onRemoveItem(source, item)
 
 				if not Player.Offline then
 					TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'RemoveItem', 'red', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** lost item: [slot:' .. _slot .. '], itemname: ' .. Player.PlayerData.items[_slot].name .. ', removed amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[_slot].amount)
@@ -58,7 +58,7 @@ local function RemoveItem(source, item, amount, slot)
 			elseif Player.PlayerData.items[_slot].amount == amountToRemove then
 				Player.PlayerData.items[_slot] = nil
 				Player.Functions.SetPlayerData("items", Player.PlayerData.items)
-                exports['cad-chains']:onRemoveItem(source)
+                exports['cad-chains']:onRemoveItem(source, item)
 
 				if Player.Offline then return true end
 
