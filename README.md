@@ -1,5 +1,14 @@
-# cad-chains
- Usable Chains [QB]
+This script allows you to create any clothing component as an item.
+
+# Preview
+[Click Here](https://youtu.be/Giy2gnHiIYo)
+
+# Features: 
+- Use multiple component items.
+- Sync even after re-entering server.
+- Removes the component if the item was removed from inventory.
+- No loops
+- Create items without restarting qb-core
 
 # Dependencies
 * qb-core (latest)
