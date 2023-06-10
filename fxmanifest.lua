@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Cadburry#7547'
 description 'Chains for QBCore'
-version '1.1'
+version '1.2'
 
 shared_scripts {
     'config.lua',

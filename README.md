@@ -9,13 +9,16 @@ This script allows you to create any clothing component as an item.
 - Removes the component if the item was removed from inventory.
 - No loops
 - Create items without restarting qb-core
+- Add/Remove item upon wearing/removing item component
 
 # Dependencies
 * qb-core (latest)
 * qb-inventory (latest)
 
-# How to use it
-* Compare the below `RemoveItem` function with yours in `qb-inventory/server` and add/replace it.
+# Configuration 
+* Add `cad-chains` to resources and `ensure cad-chains` in `server.cfg`
+* If `Config.AddRemoveItem = true` then you dont need to do below changes
+  * Compare the below `RemoveItem` function with yours in `qb-inventory/server` and add/replace it.
 ```lua
 local function RemoveItem(source, item, amount, slot)
 	local Player = QBCore.Functions.GetPlayer(source)
@@ -80,5 +83,3 @@ local function RemoveItem(source, item, amount, slot)
 	return false
 end
 ```
-* Add `cad-chains` to resources and `ensure cad-chains` in `server.cfg`
-* Thats all you are good to go!
