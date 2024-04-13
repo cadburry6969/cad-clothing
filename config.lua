@@ -1,60 +1,94 @@
 Config = {}
 
--- Add/Remove item upon wearing/removing item component
-Config.AddRemoveItem = true
+--[[Config.Framework = 'qb' -- 'qb', 'esx']]
 
--- Configure all the items you want in server
-Config.Items = {
-    ['chain1'] = {
-        ['name'] = 'chain1',
-        ['label'] = 'Chain 1',
-        ['weight'] = 100,
-        ['type'] = 'item',
-        ['image'] = 'chain1.png',
-        ['unique'] = false,
-        ['useable'] = true,
-        ['shouldClose'] = true,
-        ['combinable'] = nil,
-        ['description'] = 'Some chain',
-    },
-    ['mask1'] = {
-        ['name'] = 'mask1',
-        ['label'] = 'Mask 1',
-        ['weight'] = 100,
-        ['type'] = 'item',
-        ['image'] = 'mask1.png',
-        ['unique'] = false,
-        ['useable'] = true,
-        ['shouldClose'] = true,
-        ['combinable'] = nil,
-        ['description'] = 'Some mask',
-    }
-}
+Config.Inventory = 'ox' -- 'ox', 'qb'
+
+Config.Progress = 'ox' -- 'ox', 'qb'
+
+Config.IlleniumAppearance = false -- true: if your are using, false: if you are not using
 
 -- Configure the component and drawableid for a item mentioned above
-Config.Chains = {
-    { item = 'chain1', componentId = 7, default = 0, drawableId = 10, textureId = 0, palleteId = 0 },
-    { item = 'chain2', componentId = 7, default = 0, drawableId = 11, textureId = 0, palleteId = 0 },
-    { item = 'mask1', componentId = 1, default = 0, drawableId = 1, textureId = 0, palleteId = 0 },
+Config.Clothing = {
+    -- itemName = { gender = 'm' or 'f' or false, type = 'clothes' or 'prop', componentId = 7, default = 0, drawableId = 10, textureId = 0, palleteId = 0 }
+    -- gender: 'm': for male, 'f': for female, false: for all (https://docs.fivem.net/natives/?_0x262B14F48D29DE80)
+    -- clothes
+    chain1 = { gender = false, type = 'clothes', componentId = 7, default = 0, drawableId = 10, textureId = 0, palleteId = 0 },
+    mask1 = { gender = false, type = 'clothes', componentId = 1, default = 0, drawableId = 2, textureId = 0, palleteId = 0 },
+    -- props
+    band1 = { gender = false, type = 'prop', componentId = 7, default = -1, drawableId = 1, textureId = 0, attached = false },
+
 }
 
 -- Configure the emote for each component
-Config.Component = {
-    -- [componentId] = { animDict = 'clothingtie', anim = 'try_tie_positive_a', flags = 51 }
-    [1] = {
-        animDict = 'mp_masks@standard_car@ds@',
-        anim = 'put_on_mask',
-        flags = 51,
-        wearingProgressText = 'Putting on mask..',
-        takingoffProgressText = 'Taking off mask..',
-        progressTime = 600
+Config.ClothAndProps = {
+    -- [componentId] = { animDict = 'clothingtie', animName = 'try_tie_positive_a' }
+    ['clothes'] = {
+        [1] = {
+            animDict = 'mp_masks@standard_car@ds@',
+            animName = 'put_on_mask',
+            flags = 51,
+            wearingText = 'Putting on mask..',
+            takingOffText = 'Taking off mask..',
+            duration = 600
+        },
+        [6] = {
+            animDict = 'random@domestic',
+            animName = 'pickup_low',
+            wearingText = 'Putting on shoes..',
+            takingOffText = 'Taking off shoes..',
+            duration = 1000
+        },
+        [7] = {
+            animDict = 'clothingtie',
+            animName = 'try_tie_positive_a',
+            wearingText = 'Putting on chain..',
+            takingOffText = 'Taking off chain..',
+            duration = 600
+        },
+        [10] = {
+            animDict = 'clothingtie',
+            animName = 'try_tie_positive_a',
+            wearingText = 'Putting on chain..',
+            takingOffText = 'Taking off chain..',
+            duration = 600
+        },
     },
-    [7] = {
-        animDict = 'clothingtie',
-        anim = 'try_tie_positive_a',
-        flags = 51,
-        wearingProgressText = 'Putting on chain..',
-        takingoffProgressText = 'Taking off chain..',
-        progressTime = 3000
+    ['prop'] = {
+        [0] = {
+            animDict = 'clothingtie',
+            animName = 'try_tie_positive_a',
+            wearingText = 'Putting on Hat..',
+            takingOffText = 'Taking off Hat..',
+            duration = 600
+        },
+        [1] = {
+            animDict = 'random@domestic',
+            animName = 'pickup_low',
+            wearingText = 'Putting on Glass..',
+            takingOffText = 'Taking off Glass..',
+            duration = 1000
+        },
+        [2] = {
+            animDict = 'clothingtie',
+            animName = 'try_tie_positive_a',
+            wearingText = 'Putting on Ear..',
+            takingOffText = 'Taking off Ear..',
+            duration = 600
+        },
+        [6] = {
+            animDict = 'clothingtie',
+            animName = 'try_tie_positive_a',
+            wearingText = 'Putting on Watch..',
+            takingOffText = 'Taking off Watch..',
+            duration = 600
+        },
+        [7] = {
+            animDict = 'missmic4',
+            animName = 'michael_tux_fidget',
+            wearingText = 'Putting on Bracelet..',
+            takingOffText = 'Taking off Bracelet..',
+            duration = 1500
+        },
     }
 }

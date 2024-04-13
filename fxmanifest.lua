@@ -2,18 +2,25 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
-author 'Cadburry#7547'
-description 'Chains for QBCore'
-version '1.2'
+author 'Cadburry (Bytecode Studios)'
+description 'Clothing Items (standalone)'
+version '1.4'
 
 shared_scripts {
+    '@ox_lib/init.lua',
     'config.lua',
 }
 
 client_scripts {
-    'client.lua',
+    'framework/client.lua',
+    'clothing/client.lua',
 }
 
 server_scripts {
-    'server.lua',
+    'framework/server.lua',
+    'clothing/server.lua',
+}
+
+dependencies {
+    'ox_lib'
 }
