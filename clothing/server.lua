@@ -34,11 +34,14 @@ end
 exports('useComponent', UseComponent)
 
 function RemoveComponent(playerId, itemName)
-    local type = Config.Clothing[itemName].type
-    local componentId = Config.Clothing[itemName].componentId
-    if Clothing[playerId] and Clothing[playerId][type][componentId] then
-        TriggerClientEvent('cad-clothing:removeItem', playerId, Clothing[playerId][type][componentId])
-        Clothing[playerId][type][componentId] = nil
+    local itemData = Config.Clothing[itemName]
+    if itemData then
+        local type = itemData.type
+        local componentId = itemData.componentId
+        if Clothing[playerId] and Clothing[playerId][type][componentId] then
+            TriggerClientEvent('cad-clothing:removeItem', playerId, Clothing[playerId][type][componentId])
+            Clothing[playerId][type][componentId] = nil
+        end
     end
 end
 exports('removeComponent', RemoveComponent)
