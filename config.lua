@@ -2,7 +2,7 @@ Config = {}
 
 --[[Config.Framework = 'qb' -- 'qb', 'esx']]
 
-Config.Inventory = 'ox' -- 'ox', 'qb'
+Config.Inventory = 'ox' -- 'ox'
 
 Config.Progress = 'ox' -- 'ox', 'qb'
 

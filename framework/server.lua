@@ -25,17 +25,7 @@ elseif Config.Framework == 'esx' then
 end
 ]]
 
-if Config.Inventory == 'qb' then
-
-    local QBCore = exports['qb-core']:GetCoreObject()
-
-    for itemName in pairs(Config.Clothing) do
-        QBCore.Functions.CreateUseableItem(itemName, function(source, item)
-            UseComponent(source, item.name)
-        end)
-    end
-
-elseif Config.Inventory == 'ox' then
+if Config.Inventory == 'ox' then
 
     exports('useItem', function(event, item, inv, _, _)
         if event == 'usingItem' then
