@@ -1,11 +1,5 @@
 Config = {}
 
---[[Config.Framework = 'qb' -- 'qb', 'esx']]
-
-Config.Inventory = 'ox' -- 'ox'
-
-Config.Progress = 'ox' -- 'ox', 'qb'
-
 Config.IlleniumAppearance = false -- true: if your are using, false: if you are not using
 
 -- Configure the component and drawableid for a item mentioned above

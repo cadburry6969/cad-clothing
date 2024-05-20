@@ -1,6 +1,6 @@
 This script allows you to create any clothing component as an item.
 
-# Preview
+# Old Preview
 [Click Here](https://youtu.be/Giy2gnHiIYo)
 
 # Features: 
@@ -11,7 +11,6 @@ This script allows you to create any clothing component as an item.
 
 # Dependencies
 * ox_lib
-* es_extended / qb-core
 * ox_inventory
 
 # Configuration 

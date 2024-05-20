@@ -1,4 +1,4 @@
-local Framework = require 'framework.server'
+local Utils = require 'utils.server'
 
 Clothing = {}
 
@@ -16,7 +16,7 @@ function UseComponent(playerId, itemName)
     local itemData = Config.Clothing[itemName]
     if itemData then
         if checkGender(playerId, itemData.gender) then
-            Framework:Notify(playerId, 'You cannot wear this')
+            Utils:Notify(playerId, 'You cannot wear this')
             return false
         end
         itemData.item = itemName
@@ -45,18 +45,3 @@ function RemoveComponent(playerId, itemName)
     end
 end
 exports('removeComponent', RemoveComponent)
-
---[[
-function OnPlayerLoaded(playerId)
-    Wait(1000)
-    if Clothing[playerId] and next(Clothing[playerId]) then
-        TriggerClientEvent("cad-clothing:addAllItems", playerId, Clothing[playerId])
-    end
-end
-
-function OnPlayerUnLoaded(playerId)
-    if Clothing[playerId] then
-        Clothing[playerId] = nil
-    end
-end
-]]

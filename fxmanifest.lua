@@ -12,12 +12,12 @@ shared_scripts {
 }
 
 client_scripts {
-    'framework/client.lua',
+    'utils/client.lua',
     'clothing/client.lua',
 }
 
 server_scripts {
-    'framework/server.lua',
+    'utils/server.lua',
     'clothing/server.lua',
 }
 

@@ -1,6 +1,4 @@
-# Below are examples for adding clothing related items
-
-> OX INVENTORY
+# EXAMPLE FOR OX INVENTORY (ox_inventory/data/items.lua)
 ```lua
     ['chain1'] = {
 		label = 'Chain 1',
