@@ -17,15 +17,4 @@ function Utils:Progress(data)
     })
 end
 
-function Utils:SaveClothing()
-    -- ADD YOUR CLOTHING EVENTS/EXPORTS
-
-    if Config.IlleniumAppearance then
-        local ped = PlayerPedId()
-        local appearance = exports['illenium-appearance']:getPedAppearance(ped)
-        TriggerServerEvent('illenium-appearance:server:saveAppearance', appearance)
-    end
-
-end
-
 return Utils

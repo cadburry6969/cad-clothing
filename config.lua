@@ -1,6 +1,7 @@
 Config = {}
 
-Config.IlleniumAppearance = false -- true: if your are using, false: if you are not using
+-- Any ID of your wish but unique to your server
+Config.UniqueId = 'a9v5m5'
 
 -- Configure the component and drawableid for a item mentioned above
 Config.Clothing = {

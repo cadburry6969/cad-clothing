@@ -22,12 +22,12 @@ RegisterNetEvent('cad-clothing:useItem', function(data)
             flags = _component.flags
         })
         if success then
+            SetResourceKvp(string.format('%s:%s:%d', Config.UniqueId, data.type, data.componentId), 'true')
             if data.type == 'clothes' then
                 SetPedComponentVariation(ped, data.componentId, data.drawableId, data.textureId, data.palleteId or 0)
             else
                 SetPedPropIndex(ped, data.componentId, data.drawableId, data.textureId, data.attached or false)
             end
-            Utils:SaveClothing()
         end
         alreadyUsing = false
         ClearPedTasks(ped)
@@ -42,6 +42,7 @@ RegisterNetEvent('cad-clothing:useItem', function(data)
             flags = _component.flags
         })
         if success then
+            SetResourceKvp(string.format('%s:%s:%d', Config.UniqueId, data.type, data.componentId), 'false')
             if data.type == 'clothes' then
                 SetPedComponentVariation(ped, data.componentId, data.default, 0, 0)
             else
@@ -50,6 +51,21 @@ RegisterNetEvent('cad-clothing:useItem', function(data)
         end
         alreadyUsing = false
         ClearPedTasks(ped)
+    end
+end)
+
+RegisterNetEvent('cad-clothing:wearSaved', function()
+    local ped = PlayerPedId()
+    for item, data in pairs(Config.Clothing) do
+        local kvp = GetResourceKvpString(string.format('%s:%s:%d', Config.UniqueId, data.type, data.componentId))
+        if kvp and (kvp == 'true') then
+            hasComponentOn[data.type][data.componentId] = true
+            if data.type == 'clothes' then
+                SetPedComponentVariation(ped, data.componentId, data.drawableId, data.textureId, data.palleteId or 0)
+            else
+                SetPedPropIndex(ped, data.componentId, data.drawableId, data.textureId, data.attached or false)
+            end
+        end
     end
 end)
 
@@ -62,6 +78,4 @@ RegisterNetEvent('cad-clothing:removeItem', function(data)
     else
         ClearPedProp(ped, data.componentId)
     end
-    Wait(500)
-    Utils:SaveClothing()
 end)
